@@ -53,10 +53,6 @@ void print_error(int code, char *argv)
 		fprintf(stderr, "USAGE: monty file\n");
 	else if (code == 2)
 		fprintf(stderr, "Error: Can't open file %s\n", argv);
-	else if (code == 3)
-		fprintf(stderr, "Error: Can't read file %s\n", argv);
-	else if (code == 4)
-		fprintf(stderr, "Error: malloc failed\n");
 	exit(EXIT_FAILURE);
 }
 
