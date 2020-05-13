@@ -107,12 +107,10 @@ void separeitor(char *string, stack_t **stack, unsigned int line_number)
 		{"mul", _mul},
 		{"mod", _mod},
 		{"pchar", _pchar},
-		{NULL, NULL}
-	};
+		{NULL, NULL} };
 	char delimit[] = " \t\n";
-	char *token = strtok(string, delimit);
+	char *token = strtok(string, delimit), char *operator = token;
 	int i, bandera = 0;
-	char *operator = token;
 
 	if (operator == NULL)
 		return;
@@ -124,16 +122,14 @@ void separeitor(char *string, stack_t **stack, unsigned int line_number)
 		{
 			ops[i].f(stack, line_number);
 			bandera = 0;
-			break;
-		}
+			break; }
+		else if (operator[0] == '#')
+			continue;
 		else
 			bandera = 1;
 		if (nose.code_exit == -1)
-			break;
-	}
+			break; }
 	if (bandera == 1)
 	{
 		fprintf(stderr, "L%u: unknown instruction %s\n", line_number, operator);
-		nose.code_exit = -1;
-	}
-}
+		nose.code_exit = -1; } }
