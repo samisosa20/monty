@@ -134,7 +134,7 @@ void separeitor(char *string, stack_t **stack, unsigned int line_number)
 	}
 	if (bandera == 1)
 	{
-		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, operator);
+		fprintf(stderr, "L%u: unknown instruction %s\n", line_number, operator);
 		code_exit = -1;
 	}
 }
