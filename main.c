@@ -1,6 +1,7 @@
 #include "monty.h"
 
 int code_exit = 0;
+char *global_variable;
 int main(int argc, char *argv[])
 {
 	FILE *of;
@@ -17,7 +18,7 @@ int main(int argc, char *argv[])
 		print_error(3, argv[1]);
 	read_buf(string, rf, of, size);
 	free(string);
-	free(of);
+	fclose(of);
 	if (code_exit == -1)
 		exit(EXIT_FAILURE);
 	return 0;
@@ -39,59 +40,70 @@ void print_error(int code, char *argv)
 		printf("Error: Can't read file %s\n", argv);
 	else if (code == 4)
 		printf("Error: malloc failed\n");
+	else if (code == 5)
+		
 	exit(EXIT_FAILURE);
 }
 
 void read_buf(char *string, ssize_t rf, FILE *of, size_t size)
 {
 	unsigned int line_count = 0;
-	stack_t **stack;
+	stack_t *stack = NULL;
 
-	stack = malloc(sizeof(stack_t));
-    if (stack == NULL)
-        print_error(4, NULL);
 	while (rf >= 0)
 	{
 		/* Increment our line count */
 		line_count++;
-		separeitor(string, stack, line_count);
+		separeitor(string, &stack, line_count);
 		if (code_exit == -1)
 			break;
 		/* Get the next line */
 		rf = getline(&string, &size, of);
 	} 
-	free_dlistint(stack); 
+	free_dlistint(stack);
+	stack = NULL;
 }
 
-char *global_variable;
+
 void separeitor(char *string, stack_t **stack, unsigned int line_number)
 {
 	instruction_t ops[] = {
 		{"push", _push},
 		{"pall", _pall},
 		{"pint", _pint},
-		/*{"pop", _pop},
+		{"pop", _pop},
 		{"swap", _swap},
 		{"add", _add},
-		{"nop", _nop},*/
+		{"nop", _nop},
+		{"sub", _sub},
+		{"div", _div},
+		{"mul", _mul},
 		{NULL, NULL}
 	};
 	char delimit[] = " \t\n";
 	char *token = strtok(string, delimit);
-	int i;
-	char *operator = malloc(sizeof(char) * strlen(token));
+	int i, bandera = 0;
+	char *operator = token;
 
-	if (operator == NULL)
-		print_error(4, NULL);
-	strcpy(operator, token);
 	token = strtok(NULL, delimit);
 	global_variable = token;
-	for (i = 0; i < 3; i++)
+	for (i = 0; i < 11; i++)
 	{
 		if (strcmp(ops[i].opcode, operator) == 0)
+		{
 			ops[i].f(stack, line_number);
+			bandera = 0;
+			break;
+		}
+		else
+			bandera = 1;
+		
 		if (code_exit == -1)
 			break;
 	}
-	free(operator);
+	if (bandera == 1)
+	{
+		printf("L%d: unknown instruction %s\n", line_number, operator);
+		code_exit = -1;
+	}
 }
