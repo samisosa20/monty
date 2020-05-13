@@ -12,7 +12,7 @@ void _push(stack_t **stack, unsigned int line_number)
 
 	if (detect_alpha(global_variable) == 1)
 	{
-		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		code_exit = -1;
 		return;
 	}
@@ -60,7 +60,7 @@ void _pint(stack_t **stack, unsigned int line_number)
 
 	if (stack == NULL || *stack == NULL)
 	{
-		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+		fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
 		code_exit = -1;
 		return;
 	}
@@ -81,7 +81,7 @@ void _pop(stack_t **stack, unsigned int line_number)
 
 	if (stack == NULL || *stack == NULL)
 	{
-		fprintf(stderr, "L%d: can't pop an empty stacky\n", line_number);
+		fprintf(stderr, "L%u: can't pop an empty stacky\n", line_number);
 		code_exit = -1;
 		return;
 	}
@@ -90,7 +90,7 @@ void _pop(stack_t **stack, unsigned int line_number)
 		current = current->next;
 	if (!current)
 	{
-		fprintf(stderr, "L%d: can't pop an empty stacky\n", line_number);
+		fprintf(stderr, "L%u: can't pop an empty stacky\n", line_number);
 		code_exit = -1;
 		return;
 	}
@@ -123,7 +123,7 @@ void _swap(stack_t **stack, unsigned int line_number)
 
 	if (list_len(stack) < 2)
 	{
-		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
+		fprintf(stderr, "L%u: can't swap, stack too short\n", line_number);
 		code_exit = -1;
 		return;
 	}
