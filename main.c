@@ -75,11 +75,13 @@ void read_buf(char *string, ssize_t rf, FILE *of, size_t size)
 		/*printf("rf: %lu -> string: %s\n", rf,string);*/
 		/* Increment our line count */
 		line_count++;
-		separeitor(string, &stack, line_count);
+		if (string[0] != '#')
+			separeitor(string, &stack, line_count);
 		if (nose.code_exit == -1)
 			break;
 		/* Get the next line */
 		rf = getline(&string, &size, of);
+		
 	}
 	free_dlistint(stack);
 	stack = NULL;
