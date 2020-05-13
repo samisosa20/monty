@@ -50,13 +50,13 @@ void _pchar(stack_t **stack, unsigned int line_number)
 	}
 	while (current->next != NULL)
 		current = current->next;
-    if (current->n >= 32 && current->n <= 126)
-        printf("%c\n", current->n);
-    else
-    {
-        fprintf(stderr, "L%u: can't pchar, value out of range\n", line_number);
-        nose.code_exit = -1;
-        return;
-    }
-        
+	if (current->n >= 0 && current->n <= 126)
+		printf("%c\n", current->n);
+	else
+	{
+		fprintf(stderr, "L%u: can't pchar, value out of range\n", line_number);
+		nose.code_exit = -1;
+		return;
+	}
+		
 }
