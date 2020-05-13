@@ -1,7 +1,7 @@
 #include "monty.h"
 
-char *global_variable;
-int code_exit = 0;
+var_ext nose;
+
 /**
  * main - The entry point to the file for the instructions to be executed
  * @argc : The number of arguments received
@@ -16,6 +16,7 @@ int main(int argc, char *argv[])
 	size_t size = 0;
 	ssize_t rf = 0;
 
+	nose.code_exit = 0;
 	eva_in(argc);
 	of = fopen(argv[1], "r");
 	if (of == NULL)
@@ -25,7 +26,7 @@ int main(int argc, char *argv[])
 		read_buf(string, rf, of, size);
 	free(string);
 	fclose(of);
-	if (code_exit == -1)
+	if (nose.code_exit == -1)
 		exit(EXIT_FAILURE);
 	return (0);
 }
@@ -75,7 +76,7 @@ void read_buf(char *string, ssize_t rf, FILE *of, size_t size)
 		/* Increment our line count */
 		line_count++;
 		separeitor(string, &stack, line_count);
-		if (code_exit == -1)
+		if (nose.code_exit == -1)
 			break;
 		/* Get the next line */
 		rf = getline(&string, &size, of);
@@ -114,7 +115,7 @@ void separeitor(char *string, stack_t **stack, unsigned int line_number)
 	if (operator == NULL)
 		return;
 	token = strtok(NULL, delimit);
-	global_variable = token;
+	nose.global_variable = token;
 	for (i = 0; i < 10; i++)
 	{
 		if (strcmp(ops[i].opcode, operator) == 0)
@@ -125,12 +126,12 @@ void separeitor(char *string, stack_t **stack, unsigned int line_number)
 		}
 		else
 			bandera = 1;
-		if (code_exit == -1)
+		if (nose.code_exit == -1)
 			break;
 	}
 	if (bandera == 1)
 	{
 		fprintf(stderr, "L%u: unknown instruction %s\n", line_number, operator);
-		code_exit = -1;
+		nose.code_exit = -1;
 	}
 }

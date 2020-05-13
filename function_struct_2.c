@@ -13,7 +13,7 @@ void _add(stack_t **stack, unsigned int line_number)
 	if (list_len(stack) < 2)
 	{
 		fprintf(stderr, "L%u: can't add, stack too short\n", line_number);
-		code_exit = -1;
+		nose.code_exit = -1;
 		return;
 	}
 	else
@@ -35,7 +35,7 @@ void _add(stack_t **stack, unsigned int line_number)
 void _nop(__attribute__((unused))stack_t **stack,
 __attribute__((unused))unsigned int line_number)
 {
-	return;
+
 }
 
 /**
@@ -51,7 +51,7 @@ void _sub(stack_t **stack, unsigned int line_number)
 	if (list_len(stack) < 2)
 	{
 		fprintf(stderr, "L%u: can't sub, stack too short\n", line_number);
-		code_exit = -1;
+		nose.code_exit = -1;
 		return;
 	}
 	else
@@ -77,7 +77,7 @@ void _mul(stack_t **stack, unsigned int line_number)
 	if (list_len(stack) < 2)
 	{
 		fprintf(stderr, "L%u: can't mul, stack too short\n", line_number);
-		code_exit = -1;
+		nose.code_exit = -1;
 		return;
 	}
 	else
@@ -103,7 +103,7 @@ void _div(stack_t **stack, unsigned int line_number)
 	if (list_len(stack) < 2)
 	{
 		fprintf(stderr, "L%u: can't div, stack too short\n", line_number);
-		code_exit = -1;
+		nose.code_exit = -1;
 		return;
 	}
 	else
@@ -113,7 +113,7 @@ void _div(stack_t **stack, unsigned int line_number)
 		if (current->n == 0)
 		{
 			fprintf(stderr, "L%u: division by zero\n", line_number);
-			code_exit = -1;
+			nose.code_exit = -1;
 			free(current);
 			return;
 		}

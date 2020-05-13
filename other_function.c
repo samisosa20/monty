@@ -17,7 +17,7 @@ stack_t *add_dnodeint_end(stack_t **head, int n)
 	if (new == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
-		code_exit = -1;
+		nose.code_exit = -1;
 		return (NULL);
 	}
 
