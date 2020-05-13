@@ -85,10 +85,29 @@ void _pop(stack_t **stack, unsigned int line_number)
 		code_exit = -1;
 		return;
 	}
+
 	while (current->next != NULL)
 		current = current->next;
-	current->prev->next = NULL;
+	if (!current)
+	{
+		fprintf(stderr, "L%d: can't pop an empty stacky\n", line_number);
+		code_exit = -1;
+		return;
+	}
+	if (current->next)
+		current->next->prev = current->prev;
+	if (list_len(stack) == 1)
+		*stack = current->next;
+	else
+		current->prev->next = current->next;
 	free(current);
+	/*if (current->next != NULL)
+	{	
+		while (current->next != NULL)
+			current = current->next;
+	}
+	current->prev->next = NULL;
+	free(current);*/
 }
 
 /**
