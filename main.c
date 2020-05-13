@@ -39,6 +39,8 @@ void print_error(int code, char *argv)
 		printf("Error: Can't read file %s\n", argv);
 	else if (code == 4)
 		printf("Error: malloc failed\n");
+	else if (code == 5)
+		
 	exit(EXIT_FAILURE);
 }
 
@@ -70,15 +72,15 @@ void separeitor(char *string, stack_t **stack, unsigned int line_number)
 		{"push", _push},
 		{"pall", _pall},
 		{"pint", _pint},
-		/*{"pop", _pop},
+		{"pop", _pop},
 		{"swap", _swap},
 		{"add", _add},
-		{"nop", _nop},*/
+		{"nop", _nop},
 		{NULL, NULL}
 	};
 	char delimit[] = " \t\n";
 	char *token = strtok(string, delimit);
-	int i;
+	int i, bandera = 0;
 	char *operator = malloc(sizeof(char) * strlen(token));
 
 	if (operator == NULL)
@@ -86,12 +88,24 @@ void separeitor(char *string, stack_t **stack, unsigned int line_number)
 	strcpy(operator, token);
 	token = strtok(NULL, delimit);
 	global_variable = token;
-	for (i = 0; i < 3; i++)
+	for (i = 0; i < 8; i++)
 	{
 		if (strcmp(ops[i].opcode, operator) == 0)
+		{
 			ops[i].f(stack, line_number);
+			bandera = 0;
+			break;
+		}
+		else
+			bandera = 1;
+		
 		if (code_exit == -1)
 			break;
+	}
+	if (bandera == 1)
+	{
+		printf("L%d: unknown instruction %s\n", line_number, operator);
+		code_exit = -1;
 	}
 	free(operator);
 }

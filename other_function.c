@@ -75,3 +75,26 @@ void free_dlistint(stack_t **head)
 	}
 	free(head);
 }
+/**
+ * list_len - function that returns the number of
+ * elements in a linked stack_t list
+ * @h: struct
+ * Return: Nro elements.
+ */
+size_t list_len(stack_t **h)
+{
+	int count = 0;
+	stack_t *aux;
+
+	aux = *h;
+	if (aux == NULL)
+		return (0);
+
+	while (aux != NULL)
+	{
+		aux = aux->next;
+		count++;
+	}
+
+	return (count);
+}

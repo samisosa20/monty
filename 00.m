@@ -1,6 +1,11 @@
 push 1
-push 2
+push 2 sammy
 push 3
 push 12
 pall
-pint
+nop
+swap
+pall
+nop
+add
+pall
