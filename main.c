@@ -2,6 +2,14 @@
 
 int code_exit = 0;
 char *global_variable;
+
+/**
+ * main - The entry point to the file for the instructions to be executed
+ * @argc : The number of arguments received
+ * @argv : The arguments
+ * Return: 0 or exit on fail (1)
+ */
+
 int main(int argc, char *argv[])
 {
 	FILE *of;
@@ -21,14 +29,25 @@ int main(int argc, char *argv[])
 	fclose(of);
 	if (code_exit == -1)
 		exit(EXIT_FAILURE);
-	return 0;
+	return (0);
 }
+
+/**
+ * eva_in - validates that the user input the file
+ * @argc : The number of arguments received
+*/
 
 void eva_in(int argc)
 {
 	if (argc != 2)
 		print_error(1, NULL);
 }
+
+/**
+ * print_error - Print the possible errors
+ * @argv : The arguments received
+ * @code : the code of the error
+*/
 
 void print_error(int code, char *argv)
 {
@@ -40,10 +59,16 @@ void print_error(int code, char *argv)
 		printf("Error: Can't read file %s\n", argv);
 	else if (code == 4)
 		printf("Error: malloc failed\n");
-	else if (code == 5)
-		
 	exit(EXIT_FAILURE);
 }
+
+/**
+ * read_buf - Read the file line by line
+ * @string : The buffer to read
+ * @rf : The command to reads
+ * @of : The file to read
+ * @size : The size of the file
+*/
 
 void read_buf(char *string, ssize_t rf, FILE *of, size_t size)
 {
@@ -59,11 +84,17 @@ void read_buf(char *string, ssize_t rf, FILE *of, size_t size)
 			break;
 		/* Get the next line */
 		rf = getline(&string, &size, of);
-	} 
+	}
 	free_dlistint(stack);
 	stack = NULL;
 }
 
+/**
+ * separeitor - Separates and executes the instructions
+ * @string : The buffer to read
+ * @stack : The pointer to the instructions
+ * @line_number : The line to read
+*/
 
 void separeitor(char *string, stack_t **stack, unsigned int line_number)
 {
@@ -97,7 +128,6 @@ void separeitor(char *string, stack_t **stack, unsigned int line_number)
 		}
 		else
 			bandera = 1;
-		
 		if (code_exit == -1)
 			break;
 	}
