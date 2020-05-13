@@ -9,8 +9,13 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <ctype.h>
-extern char *global_variable;
-extern int code_exit;
+
+typedef struct var_extern
+{
+		char *global_variable;
+		int code_exit;
+} var_ext;
+extern var_ext nose;
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
