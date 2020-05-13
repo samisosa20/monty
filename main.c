@@ -81,7 +81,6 @@ void read_buf(char *string, ssize_t rf, FILE *of, size_t size)
 			break;
 		/* Get the next line */
 		rf = getline(&string, &size, of);
-		
 	}
 	free_dlistint(stack);
 	stack = NULL;
@@ -97,18 +96,12 @@ void read_buf(char *string, ssize_t rf, FILE *of, size_t size)
 void separeitor(char *string, stack_t **stack, unsigned int line_number)
 {
 	instruction_t ops[] = {
-		{"push", _push},
-		{"pall", _pall},
-		{"pint", _pint},
-		{"pop", _pop},
-		{"swap", _swap},
-		{"add", _add},
-		{"nop", _nop},
-		{"sub", _sub},
-		{"div", _div},
-		{"mul", _mul},
-		{"mod", _mod},
-		{"pchar", _pchar},
+		{"push", _push}, {"pall", _pall},
+		{"pint", _pint}, {"pop", _pop},
+		{"swap", _swap}, {"add", _add},
+		{"nop", _nop}, {"sub", _sub},
+		{"div", _div}, {"mul", _mul},
+		{"mod", _mod}, {"pchar", _pchar},
 		{NULL, NULL}
 	};
 	char delimit[] = " \t\n";
@@ -137,5 +130,5 @@ void separeitor(char *string, stack_t **stack, unsigned int line_number)
 	{
 		fprintf(stderr, "L%u: unknown instruction %s\n", line_number, operator);
 		nose.code_exit = -1;
-	}
+		}
 }
