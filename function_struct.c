@@ -80,7 +80,7 @@ void _pop(stack_t **stack, unsigned int line_number)
 
 	if (stack == NULL || *stack == NULL)
 	{
-		fprintf(stderr, "L%u: can't pop an empty stacky\n", line_number);
+		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
 		nose.code_exit = -1;
 		return;
 	}
@@ -89,7 +89,7 @@ void _pop(stack_t **stack, unsigned int line_number)
 		current = current->next;
 	if (!current)
 	{
-		fprintf(stderr, "L%u: can't pop an empty stacky\n", line_number);
+		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
 		nose.code_exit = -1;
 		return;
 	}
