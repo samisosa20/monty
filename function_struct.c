@@ -1,5 +1,11 @@
 #include "monty.h"
 
+/**
+ * _push - Push one element to the stack
+ * @stack : The pointer to the instructions
+ * @line_number : The line to read
+*/
+
 void _push(stack_t **stack, unsigned int line_number)
 {
 	int nro = 0;
@@ -15,8 +21,13 @@ void _push(stack_t **stack, unsigned int line_number)
 		nro = atoi(global_variable);
 		add_dnodeint_end(stack, nro);
 	}
-	
 }
+
+/**
+ * _pall - Print all elements of the stack
+ * @stack : The pointer to the instructions
+ * @line_number : The line to read
+*/
 
 void _pall(stack_t **stack, __attribute__((unused))unsigned int line_number)
 {
@@ -37,6 +48,12 @@ void _pall(stack_t **stack, __attribute__((unused))unsigned int line_number)
 	}
 }
 
+/**
+ * _pint - Print the last element of the stack
+ * @stack : The pointer to the instructions
+ * @line_number : The line to read
+*/
+
 void _pint(stack_t **stack, unsigned int line_number)
 {
 	stack_t *current = *stack;
@@ -52,6 +69,12 @@ void _pint(stack_t **stack, unsigned int line_number)
 	printf("%d\n", current->n);
 }
 
+/**
+ * _pop - Del the last element of the stack
+ * @stack : The pointer to the instructions
+ * @line_number : The line to read
+*/
+
 void _pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *current = *stack;
@@ -64,10 +87,15 @@ void _pop(stack_t **stack, unsigned int line_number)
 	}
 	while (current->next != NULL)
 		current = current->next;
-	
 	current->prev->next = NULL;
 	free(current);
 }
+
+/**
+ * _swap - Swap the two top element of the stack
+ * @stack : The pointer to the instructions
+ * @line_number : The line to read
+*/
 
 void _swap(stack_t **stack, unsigned int line_number)
 {

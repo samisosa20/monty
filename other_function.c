@@ -7,6 +7,7 @@
  * @n: number to save
  * Return: the address of the new element, or NULL if it failed
  */
+
 stack_t *add_dnodeint_end(stack_t **head, int n)
 {
 	stack_t *new = NULL;
@@ -33,8 +34,9 @@ stack_t *add_dnodeint_end(stack_t **head, int n)
 	}
 	return (new);
 }
+
 /**
-* detect_alpa - detects a character different number
+* detect_alpha - detects a character different number
 * @string: the string that the user enter
 * Return: 0 is fail and 1 is success
 */
@@ -47,11 +49,11 @@ int detect_alpha(char *string)
 		return (1);
 	while (string[i])
 	{
-        if (string[i] >= '0' && string[i] <= '9')
-            ;
+		if (string[i] >= '0' && string[i] <= '9')
+			;
 		else
 			return (1);
-	    i++;
+		i++;
 	}
 	return (0);
 }
@@ -65,11 +67,11 @@ void free_dlistint(stack_t *head)
 	stack_t *temp;
 
 	while (head)
-    {
-        temp = head->next;
-        free(head);
-        head = temp;
-    }
+	{
+		temp = head->next;
+		free(head);
+		head = temp;
+	}
 }
 /**
  * list_len - function that returns the number of
