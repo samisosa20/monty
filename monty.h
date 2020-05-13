@@ -50,9 +50,12 @@ void _pop(stack_t **stack, unsigned int line_number);
 void _swap(stack_t **stack, unsigned int line_number);
 void _add(stack_t **stack, unsigned int line_number);
 void _nop(stack_t **stack, unsigned int line_number);
+void _sub(stack_t **stack, unsigned int line_number);
+void _div(stack_t **stack, unsigned int line_number);
+void _mul(stack_t **stack, unsigned int line_number);
 void separeitor(char *string, stack_t **stack, unsigned int line_number);
 stack_t *add_dnodeint_end(stack_t **head, int n);
 int detect_alpha(char *string);
-void free_dlistint(stack_t **head);
+void free_dlistint(stack_t *head);
 size_t list_len(stack_t **h);
 #endif

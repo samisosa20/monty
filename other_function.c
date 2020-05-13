@@ -9,8 +9,8 @@
  */
 stack_t *add_dnodeint_end(stack_t **head, int n)
 {
-	stack_t *new;
-	stack_t *temp;
+	stack_t *new = NULL;
+	stack_t *temp = NULL;
 
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
@@ -21,19 +21,16 @@ stack_t *add_dnodeint_end(stack_t **head, int n)
 	new->prev = NULL;
 
 	if (*head == NULL)
-	{
 		*head = new;
-		return (new);
+	else
+	{
+		temp = *head;
+		while (temp->next != NULL)
+			temp = temp->next;
+		new->prev = temp;
+		temp->next = new;
+		new->next = NULL;
 	}
-
-	temp = *head;
-
-	while (temp->next != NULL)
-		temp = temp->next;
-
-	new->prev = temp;
-	temp->next = new;
-	new->next = NULL;
 	return (new);
 }
 /**
@@ -63,17 +60,16 @@ int detect_alpha(char *string)
  * @head: address
  * Return: none
  */
-void free_dlistint(stack_t **head)
+void free_dlistint(stack_t *head)
 {
-	stack_t *aux;
+	stack_t *temp;
 
-	aux = *head;
-	while (aux != NULL)
-	{
-		free(aux);
-		aux = aux->next;
-	}
-	free(head);
+	while (head)
+    {
+        temp = head->next;
+        free(head);
+        head = temp;
+    }
 }
 /**
  * list_len - function that returns the number of

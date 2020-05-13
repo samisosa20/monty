@@ -1,6 +1,6 @@
 #include "monty.h"
 
-void _push(__attribute__((unused))stack_t **stack, unsigned int line_number)
+void _push(stack_t **stack, unsigned int line_number)
 {
 	int nro = 0;
 
