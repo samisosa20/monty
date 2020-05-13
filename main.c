@@ -75,7 +75,6 @@ void read_buf(char *string, ssize_t rf, FILE *of, size_t size)
 		/*printf("rf: %lu -> string: %s\n", rf,string);*/
 		/* Increment our line count */
 		line_count++;
-		if (string[0] != '#')
 			separeitor(string, &stack, line_count);
 		if (nose.code_exit == -1)
 			break;
@@ -109,7 +108,7 @@ void separeitor(char *string, stack_t **stack, unsigned int line_number)
 	int i, bandera = 0;
 	char *operator = token;
 
-	if (operator == NULL)
+	if (operator == NULL || operator[0] == '#')
 		return;
 	token = strtok(NULL, delimit);
 	nose.global_variable = token;
