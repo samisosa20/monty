@@ -1,8 +1,7 @@
 #include "monty.h"
 
-int code_exit = 0;
 char *global_variable;
-
+int code_exit = 0;
 /**
  * main - The entry point to the file for the instructions to be executed
  * @argc : The number of arguments received
@@ -77,6 +76,7 @@ void read_buf(char *string, ssize_t rf, FILE *of, size_t size)
 
 	while (rf >= 0)
 	{
+		/*printf("rf: %lu -> string: %s\n", rf,string);*/
 		/* Increment our line count */
 		line_count++;
 		separeitor(string, &stack, line_count);
@@ -116,6 +116,8 @@ void separeitor(char *string, stack_t **stack, unsigned int line_number)
 	int i, bandera = 0;
 	char *operator = token;
 
+	if (operator == NULL)
+		return;
 	token = strtok(NULL, delimit);
 	global_variable = token;
 	for (i = 0; i < 11; i++)
