@@ -21,9 +21,8 @@ int main(int argc, char *argv[])
 	if (of == NULL)
 		print_error(2, argv[1]);
 	rf = getline(&string, &size, of);
-	if (rf == -1)
-		print_error(3, argv[1]);
-	read_buf(string, rf, of, size);
+	if (rf != EOF)
+		read_buf(string, rf, of, size);
 	free(string);
 	fclose(of);
 	if (code_exit == -1)

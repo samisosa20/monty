@@ -47,6 +47,8 @@ int detect_alpha(char *string)
 
 	if (string == NULL)
 		return (1);
+	if (string[i] == '-')
+		i++;
 	while (string[i])
 	{
 		if (string[i] >= '0' && string[i] <= '9')
