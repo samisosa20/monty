@@ -56,5 +56,5 @@ void _pchar(stack_t **stack, unsigned int line_number)
 	{
 		fprintf(stderr, "L%u: can't pchar, value out of range\n", line_number);
 		nose.code_exit = -1;
-	}	
+	}
 }
