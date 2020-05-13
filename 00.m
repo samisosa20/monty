@@ -1,26 +1,18 @@
-push 1
+push 0 Push 0 onto the stack
+push 1 Push 1 onto the stack
+
 push 2
-push 3
-pint
-add
-pall
-push 2
-push 3
-pall
-add
-sub
-pall
-push 2
-add
-pall
-push 3
-push 5
-mul
-pall
-push 15
-pall
-sub
-push 2
-pall
-div
-pall
+  push 3
+                   pall    
+
+pust 1
+                           
+push 4
+
+    push 5    
+      push    6        
+
+pall This is the end of our program. Monty is awesome!
+
+
+pust 1

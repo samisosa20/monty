@@ -51,13 +51,13 @@ void eva_in(int argc)
 void print_error(int code, char *argv)
 {
 	if (code == 1)
-		printf("USAGE: monty file\n");
+		fprintf(stderr, "USAGE: monty file\n");
 	else if (code == 2)
-		printf("Error: Can't open file %s\n", argv);
+		fprintf(stderr, "Error: Can't open file %s\n", argv);
 	else if (code == 3)
-		printf("Error: Can't read file %s\n", argv);
+		fprintf(stderr, "Error: Can't read file %s\n", argv);
 	else if (code == 4)
-		printf("Error: malloc failed\n");
+		fprintf(stderr, "Error: malloc failed\n");
 	exit(EXIT_FAILURE);
 }
 
@@ -120,7 +120,7 @@ void separeitor(char *string, stack_t **stack, unsigned int line_number)
 		return;
 	token = strtok(NULL, delimit);
 	global_variable = token;
-	for (i = 0; i < 11; i++)
+	for (i = 0; i < 10; i++)
 	{
 		if (strcmp(ops[i].opcode, operator) == 0)
 		{
@@ -135,7 +135,7 @@ void separeitor(char *string, stack_t **stack, unsigned int line_number)
 	}
 	if (bandera == 1)
 	{
-		printf("L%d: unknown instruction %s\n", line_number, operator);
+		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, operator);
 		code_exit = -1;
 	}
 }

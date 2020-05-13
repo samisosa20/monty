@@ -12,7 +12,7 @@ void _push(stack_t **stack, unsigned int line_number)
 
 	if (detect_alpha(global_variable) == 1)
 	{
-		printf("L%d: usage: push integer\n", line_number);
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		code_exit = -1;
 		return;
 	}
@@ -33,7 +33,7 @@ void _pall(stack_t **stack, __attribute__((unused))unsigned int line_number)
 {
 	stack_t *current = *stack;
 
-	if (current == NULL)
+	if (stack == NULL || *stack == NULL)
 	{
 		code_exit = -1;
 		return;
@@ -58,9 +58,9 @@ void _pint(stack_t **stack, unsigned int line_number)
 {
 	stack_t *current = *stack;
 
-	if (current == NULL)
+	if (stack == NULL || *stack == NULL)
 	{
-		printf("L%d: can't pint, stack empty\n", line_number);
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
 		code_exit = -1;
 		return;
 	}
@@ -79,9 +79,9 @@ void _pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *current = *stack;
 
-	if (current == NULL)
+	if (stack == NULL || *stack == NULL)
 	{
-		printf("L%d: can't pop an empty stacky\n", line_number);
+		fprintf(stderr, "L%d: can't pop an empty stacky\n", line_number);
 		code_exit = -1;
 		return;
 	}
@@ -104,7 +104,7 @@ void _swap(stack_t **stack, unsigned int line_number)
 
 	if (list_len(stack) < 2)
 	{
-		printf("L%d: can't swap, stack too short\n", line_number);
+		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
 		code_exit = -1;
 		return;
 	}
