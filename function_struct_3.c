@@ -78,16 +78,12 @@ void _pstr(stack_t **stack, __attribute__((unused))unsigned int line_number)
 		current = current->next;
 	while (current != NULL)
 	{
-		if (current->n != 0 || (current->n > 1 && current->n <= 127))
+		if (current->n >= 1 && current->n <= 127)
 		{
 			printf("%c", current->n);
 		}
 		else
-		{
-			printf("\n");
-			nose.code_exit = -1;
-			return;
-		}
+			break;
 		current = current->prev;
 	}
 	printf("\n");
