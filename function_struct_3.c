@@ -88,3 +88,25 @@ void _pstr(stack_t **stack, __attribute__((unused))unsigned int line_number)
 	}
 	printf("\n");
 }
+
+/**
+ * _rotl - Rotate the top element to the last position
+ * @stack : The pointer to the instructions
+ * @line_number : The line to read
+*/
+
+void _rotl(stack_t **stack, __attribute__((unused))unsigned int line_number)
+{
+	stack_t *current = *stack;
+	stack_t *first = *stack;
+
+	if (list_len(stack) < 2)
+		return;
+	while (current->next != NULL)
+		current = current->next;
+	current->prev->next = NULL;
+	current->prev = NULL;
+	current->next = first;
+	first->prev = current;
+	*stack = current;
+}
