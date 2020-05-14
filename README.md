@@ -37,3 +37,4 @@ What you should learn from this project:
 
 ## Author
 * **Sammy Guttman** - [samisosa20](https://github.com/samisosa20)
+* **Santiago Arboleda** - [Blazeker](https://github.com/Blazeker)
