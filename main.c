@@ -101,7 +101,7 @@ void separeitor(char *string, stack_t **stack, unsigned int line_number)
 		{"nop", _nop}, {"sub", _sub},
 		{"div", _div}, {"mul", _mul},
 		{"mod", _mod}, {"pchar", _pchar},
-		{NULL, NULL}
+		{"pstr", _pstr}, {NULL, NULL}
 	};
 	char delimit[] = " \t\n";
 	char *token = strtok(string, delimit);
@@ -112,7 +112,7 @@ void separeitor(char *string, stack_t **stack, unsigned int line_number)
 		return;
 	token = strtok(NULL, delimit);
 	nose.global_variable = token;
-	for (i = 0; i < 12; i++)
+	for (i = 0; i < 13; i++)
 	{
 		if (strcmp(ops[i].opcode, operator) == 0)
 		{

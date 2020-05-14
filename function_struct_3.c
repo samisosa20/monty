@@ -58,3 +58,37 @@ void _pchar(stack_t **stack, unsigned int line_number)
 		nose.code_exit = -1;
 	}
 }
+
+/**
+ * _pstr - Convert all valid elements to characters
+ * @stack : The pointer to the instructions
+ * @line_number : The line to read
+*/
+
+void _pstr(stack_t **stack, __attribute__((unused))unsigned int line_number)
+{
+	stack_t *current = *stack;
+
+	if (stack == NULL || *stack == NULL)
+	{
+		printf("\n");
+		return;
+	}
+	while (current->next != NULL)
+		current = current->next;
+	while (current != NULL)
+	{
+		if (current->n != 0 || (current->n > 1 && current->n <= 127))
+		{
+			printf("%c", current->n);
+		}
+		else
+		{
+			printf("\n");
+			nose.code_exit = -1;
+			return;
+		}
+		current = current->prev;
+	}
+	printf("\n");
+}
