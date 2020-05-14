@@ -110,3 +110,25 @@ void _rotl(stack_t **stack, __attribute__((unused))unsigned int line_number)
 	first->prev = current;
 	*stack = current;
 }
+
+/**
+ * _rotr - Rotate the top element to the first position
+ * @stack : The pointer to the instructions
+ * @line_number : The line to read
+*/
+
+void _rotr(stack_t **stack, __attribute__((unused))unsigned int line_number)
+{
+	stack_t *current = *stack;
+	stack_t *first = *stack;
+
+	if (list_len(stack) < 2)
+		return;
+	while (current->next != NULL)
+		current = current->next;
+	first->next->prev = NULL;
+	*stack = first->next;
+	first->next = NULL;
+	first->prev = current;
+	current->next = first;
+}
